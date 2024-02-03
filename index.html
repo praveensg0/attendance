@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Attendance Calculator</title>
+</head>
+
+<body>
+  <div class="header">
+    <h1 class="section-title">Attendance Calculator</h1>
+  </div>
+
+  <div class="content-container">
+    <div class="container">
+      <div class="input-container">
+        <label for="totalClasses">Total Classes:</label>
+        <input type="number" id="totalClasses" placeholder="Enter total classes" max="9999" pattern="\d*">
+      </div>
+
+      <div class="input-container">
+        <label for="presentClasses">Number of Classes Present:</label>
+        <input type="number" id="presentClasses" placeholder="Enter present classes" max="9999">
+      </div>
+
+      <div class="input-container">
+        <label for="absentClasses">Number of Classes Absent:</label>
+        <input type="number" id="absentClasses" placeholder="Enter absent classes" max="9999">
+      </div>
+
+      <div class="input-container slide">
+        <label for="targetAttendance">Target Attendance:</label>
+        <select id="targetAttendance"></select>
+      </div>
+
+      <div class="button-container">
+        <button class="button" onclick="calculateAttendance()">Calculate</button>
+        <button class="button" onclick="clearForm()">Clear</button>
+      </div>
+    </div>
+  </div>
+  <div class="result-container styled-result" id="resultContainer">
+    <div id="result" class="result"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
