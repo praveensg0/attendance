@@ -14,21 +14,33 @@ function generateOptions(selectId, start, end, increment, suffix) {
 generateOptions("targetAttendance", 5, 100, 5, "%");
 
 function clearForm() {
-  document.getElementById("totalClasses").value = "";
-  document.getElementById("presentClasses").value = "";
-  document.getElementById("absentClasses").value = "";
-  document.getElementById("targetAttendance").value = "";
+  // Store elements in variables for better performance
+  const totalClassesInput = document.getElementById("totalClasses");
+  const presentClassesInput = document.getElementById("presentClasses");
+  const absentClassesInput = document.getElementById("absentClasses");
+  const targetAttendanceInput = document.getElementById("targetAttendance");
+  const resultContainer = document.getElementById("resultContainer");
+
+  // Clear input values
+  totalClassesInput.value = "";
+  presentClassesInput.value = "";
+  absentClassesInput.value = "";
+  targetAttendanceInput.value = "";
 
   // Clear result
-  document.getElementById("result").textContent = "";
+  if (resultContainer) {
+    resultContainer.textContent = "";
+  }
 }
 
 // Function to calculate attendance
 function calculateAttendance() {
+  // Store elements in variables for better performance
   const totalClassesInput = document.getElementById("totalClasses").value.trim();
   const presentClassesInput = document.getElementById("presentClasses").value.trim() || "0";
   const absentClassesInput = document.getElementById("absentClasses").value.trim() || "0";
   const targetAttendanceInput = document.getElementById("targetAttendance").value.trim();
+  const resultContainer = document.getElementById("resultContainer");
 
   // Check if totalClassesInput is a valid number
   if (isNaN(totalClassesInput) || totalClassesInput === "") {
@@ -93,13 +105,21 @@ function calculateAttendance() {
     resultElement.textContent = `Good start! You can bunk up to ${bunkableClasses} classes with a target attendance of ${targetAttendance}% make sure to attend an additional ${Math.min(remainingClasses, Math.ceil(requiredAttendance))} classes with ${presentClasses} classes present.`;
   }
 
-}
-calculateAttendance();
-// Function to display result
-function showResult(message) {
-  const resultElement = document.getElementById("result");
-  resultElement.textContent = message;
-  document.getElementById("resultContainer").style.display = "block"; // Show the result container
+
   // After calculating attendance, scroll to the result section
+  resultElement.style.marginTop = "30px"; // Adjust the margin to ensure the result is visible
   resultElement.scrollIntoView({ behavior: "smooth" });
 }
+
+// Function to display result
+function showResult(message) {
+  const resultContent = document.getElementById("result");
+  const resultContainer = document.getElementById("resultContainer");
+
+  if (resultContent && resultContainer) {
+    resultContent.textContent = message;
+    resultContainer.style.display = "block"; // Show the result container
+  }
+}
+
+calculateAttendance();
