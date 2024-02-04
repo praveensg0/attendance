@@ -32,8 +32,7 @@ function calculateAttendance() {
 
   // Check if totalClassesInput is a valid number
   if (isNaN(totalClassesInput) || totalClassesInput === "") {
-    const resultElement = document.getElementById("result");
-    resultElement.textContent = "Please enter a valid number for total classes.";
+    showResult("Please enter a valid number for total classes.");
     return;
   }
 
@@ -42,8 +41,7 @@ function calculateAttendance() {
 
   // Check if other inputs are valid numbers
   if (isNaN(presentClassesInput) || isNaN(absentClassesInput) || targetAttendanceInput === "" || isNaN(targetAttendanceInput)) {
-    const resultElement = document.getElementById("result");
-    resultElement.textContent = "Please enter valid numbers for present classes, absent classes, and target attendance.";
+    showResult("Please enter valid numbers for present classes, absent classes, and target attendance.");
     return;
   }
 
@@ -53,36 +51,55 @@ function calculateAttendance() {
 
   // Validate absentClasses and presentClasses to ensure they're not more than totalClasses
   if (absentClasses + presentClasses > totalClasses) {
-    const resultElement = document.getElementById("result");
-    resultElement.textContent = "The sum of absent classes and present classes cannot be more than total classes.";
+    showResult("The sum of absent classes and present classes cannot be more than total classes.");
     return;
   }
 
   const remainingClasses = totalClasses - presentClasses - absentClasses;
 
-  const requiredAttendance = (targetAttendance / 100) * totalClasses - presentClasses;
+  const requiredAttendance = Math.max(0, (targetAttendance / 100) * totalClasses - presentClasses);
+
 
   if (remainingClasses === Math.ceil(requiredAttendance)) {
-    const resultElement = document.getElementById("result");
-    resultElement.textContent = `Oops! You need to attend all remaining classes to achieve ${targetAttendance}% attendance. Negotiate wisely with your classes!`;
+    showResult(`Oops! You need to attend all remaining classes to achieve ${targetAttendance}% attendance. RIP!`);
+    return;
+  }
+
+  if (remainingClasses === 0) {
+
+    const percentage = ((presentClasses + remainingClasses) / totalClasses) * 100;
+    showResult(`Looks like you don't have anymore classes remaining! btw your attendance is ${percentage.toFixed(2)}%`);
     return;
   }
 
   if (requiredAttendance > remainingClasses) {
     const percentage = ((presentClasses + remainingClasses) / totalClasses) * 100;
 
-    const resultElement = document.getElementById("result");
-    resultElement.textContent = `Even if you attend all remaining ${remainingClasses} classes, you will get ${percentage.toFixed(2)}% of attendance, and you won't achieve the target attendance. Consider obtaining a medical certificate.`;
+    showResult(`Even if you attend all remaining ${remainingClasses} classes, you will get ${percentage.toFixed(2)}% of attendance, and you won't achieve the target attendance. Consider obtaining a medical certificate.`);
     return;
   }
 
-  const bunkableClasses = Math.min(remainingClasses, totalClasses - presentClasses - Math.ceil(requiredAttendance));
+  const bunkableClasses = Math.min(remainingClasses, totalClasses - (presentClasses+absentClasses) - Math.ceil(requiredAttendance));
 
   const resultElement = document.getElementById("result");
 
-  if (presentClassesInput === "0" && absentClassesInput === "0") {
+  if (bunkableClasses < 0) {
+    showResult("You have already achieved or exceeded the target attendance. Keep up the good work!");
+  } else if (Math.min(remainingClasses, Math.ceil(requiredAttendance)) === 0) {
+    showResult("You have already achieved or exceeded the target attendance. Keep up the good work!");
+  } else if (presentClassesInput === "0" && absentClassesInput === "0") {
     resultElement.textContent = `You can bunk up to ${bunkableClasses} classes with a target attendance of ${targetAttendance}%.`;
   } else {
-    resultElement.textContent = `Good start! Bunk up to ${bunkableClasses} classes with a target attendance of ${targetAttendance}% make sure to attend an additional ${Math.min(remainingClasses, Math.ceil(requiredAttendance))} classes with ${presentClasses} classes present.`;
+    resultElement.textContent = `Good start! You can bunk up to ${bunkableClasses} classes with a target attendance of ${targetAttendance}% make sure to attend an additional ${Math.min(remainingClasses, Math.ceil(requiredAttendance))} classes with ${presentClasses} classes present.`;
   }
+
+}
+calculateAttendance();
+// Function to display result
+function showResult(message) {
+  const resultElement = document.getElementById("result");
+  resultElement.textContent = message;
+  document.getElementById("resultContainer").style.display = "block"; // Show the result container
+  // After calculating attendance, scroll to the result section
+  resultElement.scrollIntoView({ behavior: "smooth" });
 }
