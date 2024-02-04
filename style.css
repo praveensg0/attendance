@@ -195,13 +195,16 @@ button:active {
 }
 
 
+#result {
+  text-align: center; /* Center-align the text */
+  margin-top: 30px;
+}
+
+/* Optional: Add additional styling for better visibility */
 .result {
-  content: '';
-  align-items: center;
-  text-align: center;
-  padding: 0px 30px;
-  font-size: 1.2em;
-  color: #333;
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 5px;
 }
 
 /* ===== MEDIA QUERIES =====*/
