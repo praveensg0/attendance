@@ -25,7 +25,6 @@ function clearForm() {
   totalClassesInput.value = "";
   presentClassesInput.value = "";
   absentClassesInput.value = "";
-  targetAttendanceInput.value = "";
 
   // Clear result
   if (resultContainer) {
