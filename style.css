@@ -202,7 +202,8 @@ button:active {
   padding: 10px;
   font-size: 1.3em;
   background-color: rgba(240, 240, 240, 0.212);
-  color: #ff0000;
+  color: #5d0202;
+  line-height: 1.5;
 }
 
 /* ===== MEDIA QUERIES =====*/
