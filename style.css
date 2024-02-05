@@ -195,16 +195,14 @@ button:active {
 }
 
 
-#result {
-  text-align: center; /* Center-align the text */
+.result-container {
+  display: none;
+  text-align: center;
   margin-top: 30px;
-}
-
-/* Optional: Add additional styling for better visibility */
-.result {
-  background-color: #f0f0f0;
   padding: 10px;
-  border-radius: 5px;
+  font-size: 1.3em;
+  background-color: rgba(240, 240, 240, 0.212);
+  color: #ff0000;
 }
 
 /* ===== MEDIA QUERIES =====*/
@@ -214,25 +212,19 @@ button:active {
 @media screen and (max-width: 576px) {
   .content-container {
     width: 80%;
-    /* Adjust the width percentage for mobile screens */
     max-width: 300px;
     font-size: 1em;
     margin-top: -30px;
-    /* Adjust the negative margin to move the container up */
     transition: margin-top 0.3s ease;
-    /* Add a smooth transition for better visual effect */
-    /* Adjust font size for mobile screens */
   }
 
   .header {
-    font-size: 1em;/
+    font-size: 1em;
   }
 
   .button-container {
     flex-direction: column;
-    /* Stack buttons vertically */
     align-items: center;
-    /* Center align buttons */
   }
 
   #targetAttendance select {
@@ -241,7 +233,6 @@ button:active {
 
   button {
     margin-bottom: 10px;
-    /* Add space between stacked buttons */
   }
 }
 

@@ -31,6 +31,7 @@ function clearForm() {
   // Clear result
   if (resultContainer) {
     resultContainer.textContent = "";
+    resultContainer.style.display = "none";
   }
 }
 
@@ -39,19 +40,11 @@ function calculateAttendance() {
   const presentClassesInput = document.getElementById("presentClasses").value.trim() || "0";
   const absentClassesInput = document.getElementById("absentClasses").value.trim() || "0";
   const targetAttendanceInput = document.getElementById("targetAttendance").value.trim();
-  const resultContainer = document.getElementById("resultContainer");
-
 
   const totalClasses = parseFloat(totalClassesInput);
   const presentClasses = parseFloat(presentClassesInput);
   const absentClasses = parseFloat(absentClassesInput);
   const targetAttendance = parseFloat(targetAttendanceInput) || 5;
-
-
-  if (absentClasses + presentClasses > totalClasses) {
-    showResult("The sum of absent classes and present classes cannot be more than total classes.");
-    return;
-  }
 
   const remainingClasses = totalClasses - (presentClasses + absentClasses);
   const requiredAttendance = Math.max(0, (targetAttendance / 100) * totalClasses - presentClasses);
@@ -61,7 +54,9 @@ function calculateAttendance() {
 
   // Validate totalClassesInput
   if (totalClassesInput === "" || isNaN(parseFloat(totalClassesInput)) || parseFloat(totalClassesInput) <= 0) {
-    message = "Please enter a valid number for total classes.";
+    message = `Please enter a valid number for total classes.`;
+  } else if (absentClasses + presentClasses > totalClasses) {
+    message = `The sum of absent classes and present classes cannot be more than total classes.`;
   } else if (remainingClasses === 0) {
     const percentage = ((presentClasses + remainingClasses) / totalClasses) * 100;
     message = `Looks like you don't have any more classes remaining! Your attendance is ${percentage.toFixed(2)}%.`;
@@ -83,8 +78,13 @@ function calculateAttendance() {
   }
 
   showResult(message);
+}
 
+// Function to display result
+function showResult(message) {
   let resultElement = document.getElementById("result");
+  const resultContainer = document.getElementById("resultContainer");
+
   if (!resultElement) {
     resultElement = document.createElement("div");
     resultElement.id = "result";
@@ -92,25 +92,9 @@ function calculateAttendance() {
   }
 
   resultElement.textContent = message;
-  resultElement.style.marginTop = "30px";
+  resultContainer.style.display = "block";
+  resultElement.classList.add("result");
   resultElement.scrollIntoView({ behavior: "smooth" });
 }
 
-
-// Function to display result
-function showResult(message) {
-  const resultContent = document.getElementById("result");
-  const resultContainer = document.getElementById("resultContainer");
-
-  if (resultContent && resultContainer) {
-    resultContent.textContent = message;
-    resultContainer.style.display = "block"; // Show the result container
-    resultContent.style.textAlign = "center"; // Center-align the text
-    resultContent.style.marginTop = "30px"; // Add margin-top for better spacing
-
-    // Optional: Add additional styling for better visibility
-    resultContent.classList.add("result");
-  }
-}
-
-calculateAttendance();
+document.getElementById("calculateButton").addEventListener("click", calculateAttendance);
