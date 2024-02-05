@@ -4,10 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="style.css">
-  <a title="Web Analytics" href="https://clicky.com/101442663">
-  <img alt="Clicky" src="//static.getclicky.com/media/links/badge.gif" border="0" />
-  </a>
+  
+  <a title="Web Analytics" href="https://clicky.com/101442663"><img alt="Clicky"
+      src="//static.getclicky.com/media/links/badge.gif" border="0" /></a>
   <script async data-id="101442663" src="//static.getclicky.com/js"></script>
   <title>Attendance Calculator</title>
 </head>
@@ -40,7 +41,7 @@
       </div>
 
       <div class="button-container">
-        <button class="button" onclick="calculateAttendance()">Calculate</button>
+        <button id="calculateButton" class="button" onclick="calculateAttendance()">Calculate</button>
         <button class="button" onclick="clearForm()">Clear</button>
       </div>
     </div>
@@ -50,6 +51,7 @@
   </div>
 
   <script src="script.js"></script>
+
 </body>
 
 </html>
