@@ -1,3 +1,13 @@
+/* 
+    This website is open source and available under the MIT License.
+    
+    MIT License:
+    - Copyright © Praveen S G
+    - Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software.
+    - For more details, please refer to the LICENSE file.
+*/
+
+
 // Function to generate options for a select element
 function generateOptions(selectId, start, end, increment, suffix) {
   const selectElement = document.getElementById(selectId);
