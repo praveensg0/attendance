@@ -1,31 +1,36 @@
-# Attendance Calculator
+## Attendance Calculator
 
-This is a simple attendance calculator web application written in HTML, CSS, and JavaScript.
+A simple web application to calculate attendance percentage.
 
 ## Demo
 
-You can try out the calculator [here](https://bunk.netlify.app/).
+Try out the calculator [here](https://bunk.netlify.app/).
 
-![Screenshot 2024-04-09 213235](https://github.com/praveensg0/attendance/assets/144553645/c2c94499-91e6-4d0e-b4bd-61642c55e8a4)
+![Screenshot](https://github.com/praveensg0/attendance/assets/144553645/c2c94499-91e6-4d0e-b4bd-61642c55e8a4)
 
 ## How to Use
 
-1. Open the `index.html` file in a web browser.
-2. Enter the total number of classes, number of classes present, and number of classes absent.
-3. Optionally, select a target attendance percentage.
-4. Click the "Calculate" button to see the calculated attendance percentage.
+1. Open `index.html` in a web browser.
+2. Enter total, present, and absent classes.
+3. Optionally, set a target attendance percentage.
+4. Click "Calculate" to see the result.
 
 ## Features
 
-- Calculate attendance percentage based on total classes, present classes, and absent classes.
-- Option to set a target attendance percentage for comparison.
-- Responsive design for usage on various devices.
+- Calculate attendance percentage.
+- Set target attendance for comparison.
+- Responsive design.
 
 ## Files Included
 
-- `index.html`: Contains the HTML structure of the attendance calculator.
-- `style.css`: Contains the CSS styles for the web page.
-- `script.js`: Contains the JavaScript code for calculating attendance.
+- `index.html`: HTML structure.
+- `style.css`: CSS styles.
+- `script.js`: JavaScript code for calculation.
+
+## Clicky Site Monitoring
+Track website traffic and visitor behavior in real-time using Clicky.
+
+Click [here](https://clicky.com/101442663) to get it for free.
 
 ## License
 
